@@ -1,0 +1,9 @@
+@import url("./styles/variables.css");
+
+.site {
+  min-height: 100vh;
+  background-color: var(--site-background-color);
+}
+.container {
+  background-color: var(--nav-container-background-color);
+}
