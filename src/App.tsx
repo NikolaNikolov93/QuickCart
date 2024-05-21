@@ -1,11 +1,17 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+
 import Navigation from "./features/navigaton/Navigation";
+import Home from "./pages/home/Home";
 function App() {
   return (
     <div className="site">
-      <section className="container">
-        <Navigation />
-      </section>
+      <Navigation />
+      <div className="main">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
     </div>
   );
 }
