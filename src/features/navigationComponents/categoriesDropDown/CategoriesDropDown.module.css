@@ -1,0 +1,9 @@
+.dropdown {
+  position: absolute;
+  top: 66px;
+  width: 120px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 1em;
+}
