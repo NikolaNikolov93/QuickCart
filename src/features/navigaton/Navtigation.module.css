@@ -1,25 +1,17 @@
+@import url(/src/styles/variables.css);
+.container {
+  background-color: var(--nav-container-background-color);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 .navigation {
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 0.5em;
+  padding: 0.2em;
   gap: 2em;
-}
-.logo img {
-  max-width: 80px;
-  max-height: 80px;
-}
-.nav-links {
-  display: flex;
-  gap: 1em;
-}
-.profile {
-  display: flex;
-  gap: 1em;
-  margin-left: auto;
-}
-.profile a {
-  color: var(--icons-color);
-  font-size: 1.5em;
 }
