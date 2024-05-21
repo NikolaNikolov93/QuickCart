@@ -1,0 +1,9 @@
+.profile {
+  display: flex;
+  gap: 1em;
+  margin-left: auto;
+}
+.profile a {
+  color: var(--icons-color);
+  font-size: 1.5em;
+}
