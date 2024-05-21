@@ -1,5 +1,6 @@
 :root {
-  --nav-container-background-color: #0c2c2c;
-  --site-background-color: #e0e0e0;
-  --icons-color: #b8a471;
+  --nav-container-background-color: #e9e9e9;
+  --site-background-color: #ffffff;
+  --icons-color: black;
+  --active-links-color: #ff7900;
 }
