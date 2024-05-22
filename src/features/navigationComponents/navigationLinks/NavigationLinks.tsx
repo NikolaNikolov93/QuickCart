@@ -11,6 +11,7 @@ const NavigationLinks = () => {
       <li
         onMouseEnter={() => setIsActive(true)}
         onMouseLeave={() => setIsActive(false)}
+        onClick={() => setIsActive(false)}
       >
         <NavLink
           className={({ isActive, isPending }) =>

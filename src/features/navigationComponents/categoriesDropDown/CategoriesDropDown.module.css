@@ -1,9 +1,23 @@
+@import url("/src/styles/variables.css");
 .dropdown {
   position: absolute;
   top: 66px;
-  width: 120px;
-  background-color: white;
-  border: 1px solid lightgray;
-  border-radius: 10px;
+  max-height: 400px;
+  background-color: var(--nav-container-background-color);
   padding: 1em;
+  overflow-y: auto;
+}
+.dropdown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.dropdown ul li {
+  border-bottom: 1px solid gray;
+}
+.dropdown ul li a {
+  color: gray;
+}
+.dropdown ul li a:hover {
+  color: black;
 }
