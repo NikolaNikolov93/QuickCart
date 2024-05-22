@@ -1,6 +1,6 @@
 @import url("./styles/variables.css");
 
-.site {
+html {
   background-color: var(--site-background-color);
   position: relative;
 }
