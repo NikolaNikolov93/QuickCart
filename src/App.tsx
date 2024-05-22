@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Navigation from "./features/navigaton/Navigation";
 import Home from "./pages/home/Home";
 import New from "./pages/new/New";
-import Categories from "./pages/categories/Categories";
+import Products from "./pages/products/Products";
 function App() {
   return (
     <div className="site">
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
-          <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/:product" element={<Products />} />
         </Routes>
       </div>
     </div>
