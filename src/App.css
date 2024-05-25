@@ -9,3 +9,6 @@ html {
   margin: 0 auto;
   padding: 0.5em;
 }
+.active-modal {
+  overflow-y: hidden;
+}
