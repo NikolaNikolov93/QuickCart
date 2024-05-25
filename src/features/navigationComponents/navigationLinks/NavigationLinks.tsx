@@ -13,14 +13,7 @@ const NavigationLinks = () => {
         onMouseLeave={() => setIsActive(false)}
         onClick={() => setIsActive(false)}
       >
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending ? styles["pending"] : isActive ? styles["active"] : ""
-          }
-          to="/categories"
-        >
-          Categories
-        </NavLink>
+        <p>Categories</p>
         {isActive && <CategoriesDropDown />}
       </li>
 

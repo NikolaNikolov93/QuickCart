@@ -4,14 +4,15 @@
   display: flex;
   gap: 1em;
 }
-.nav-links > li {
+.nav-links > li,
+.nav-links > p {
   height: 67px;
   align-content: center;
 }
 .active {
   color: var(--active-links-color);
 }
-.nav-links > li:first-child::after {
+.nav-links p:first-child::after {
   content: "\25be";
   margin-left: 0.2em;
 }
