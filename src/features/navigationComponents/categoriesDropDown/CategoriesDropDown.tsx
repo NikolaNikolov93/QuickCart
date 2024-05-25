@@ -27,9 +27,9 @@ const CategoriesDropDown = () => {
   }, []);
 
   const categoreisLIst = useMemo(() => {
-    return categories.map((category, index) => (
+    return categories.map((category: any, index) => (
       <li key={index}>
-        <Link to={`/categories/${category}`}>{category}</Link>
+        <Link to={`/categories/${category.slug}`}>{category.name}</Link>
       </li>
     ));
   }, [categories]);

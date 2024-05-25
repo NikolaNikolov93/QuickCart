@@ -1,19 +1,19 @@
 @import url("/src/styles/variables.css");
 .dropdown {
   position: absolute;
-  top: 66px;
-  max-height: 400px;
+  top: 70px;
+  left: 0;
+  font-size: 0.8em;
   background-color: var(--nav-container-background-color);
   padding: 1em;
-  overflow-y: auto;
 }
 .dropdown ul {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 0.5em;
 }
 .dropdown ul li {
-  border-bottom: 1px solid gray;
+  flex-basis: calc((100% - 3 * 0.5em) / 4);
 }
 .dropdown ul li a {
   color: gray;
