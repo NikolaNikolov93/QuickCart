@@ -1,0 +1,65 @@
+.card-container {
+  position: relative;
+  padding: 0 1em 3em 1em;
+  flex-basis: calc((100% - 4 * 2em) / 5);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.product-card {
+  text-align: center;
+}
+
+.card-container:hover {
+  background-color: rgb(232, 232, 232);
+}
+
+.card-container:hover .hover-info {
+  opacity: 1;
+  bottom: 0.1em;
+  pointer-events: all;
+}
+
+.image-container {
+  max-height: 300px;
+  width: auto;
+  margin: 0 auto;
+}
+
+.product-card p {
+  text-align: start;
+}
+
+.hover-info {
+  display: flex;
+  position: absolute;
+  gap: 0.2em;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease, bottom 0.2s ease;
+  pointer-events: none;
+}
+
+.hover-info img {
+  border: 1px solid rgb(195, 195, 195);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  height: 50px;
+  width: 50px;
+}
+
+.hover-info img:hover {
+  background-color: white;
+}
+
+.add-to-favourites-btn {
+  font-size: 1.2em;
+  position: absolute;
+  background-color: white;
+  top: 1em;
+  right: 1em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid lightgray;
+  padding: 0.3em 0.3em 0 0.3em;
+  border-radius: 0.3em;
+}

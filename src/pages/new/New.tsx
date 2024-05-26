@@ -1,23 +1,5 @@
 const New = () => {
-  return (
-    <div>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-      <h1>New stuff</h1>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default New;
