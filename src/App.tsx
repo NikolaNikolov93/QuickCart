@@ -5,6 +5,7 @@ import Navigation from "./features/navigaton/Navigation";
 import Home from "./pages/home/Home";
 import New from "./pages/new/New";
 import Products from "./pages/products/Products";
+import SingleProduct from "./pages/singleProduct/SingleProduct";
 function App() {
   return (
     <div className="site">
@@ -14,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
           <Route path="/categories/:products" element={<Products />} />
-          {/* <Route path="/categories/:products/:id" element={<SingleProduct />} /> */}
+          <Route path="/categories/:products/:id" element={<SingleProduct />} />
         </Routes>
       </div>
     </div>

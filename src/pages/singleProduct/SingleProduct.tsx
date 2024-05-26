@@ -1,84 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SingleProduct.module.css";
+import { useParams } from "react-router-dom";
 
-//Typescript interface for the Component
-interface SingleProductProps {
-  modalContent: {
-    title: string;
-    price: number;
-    thumbnail: string;
-  };
-  closeModalAction: () => void;
-}
+const SingleProduct = () => {
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
 
-/**
- *
- * modalContent Holds the product object
- * closeModal is callback fucntion that clsoes the modal
- * @param param0
- * @returns
- */
-
-const SingleProduct: React.FC<SingleProductProps> = ({
-  modalContent,
-  closeModalAction,
-}) => {
+  const { id } = useParams();
   useEffect(() => {
-    //Adds class to the body if the modal is active to stop the scrolling
-    document.body.classList.add("active-modal");
-    /**
-     *
-     * Closes the modal on Escape button click
-     * @param event
-     */
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeModalAction();
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://dummyjson.com/products/${id}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
+
+        setProduct(result);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      /**
-       *
-       *Cleanup funtion that removes the class from the body
-       and removes the even listener for Escape key
-       *
-       */
-
-      document.body.classList.remove("active-modal");
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  });
+    fetchData();
+  }, []);
 
   return (
-    <div className={styles["modal"]}>
-      <div
-        onClick={() => {
-          closeModalAction();
-        }}
-        className={styles["overlay"]}
-      >
-        <div
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
-          className={styles["modal-content"]}
-        >
-          <h1>{`Item: ${modalContent.title}`}</h1>
-          <h1>{`Price: ${modalContent.price}`}</h1>
-          <img src={`${modalContent.thumbnail}`} alt="" />
-          <button
-            onClick={() => {
-              closeModalAction();
-            }}
-            className={styles["close-modal"]}
-          >
-            close
-          </button>
-        </div>
+    <section className={styles["product-container"]}>
+      <div className={`${styles["product-info"]} ${styles["flex-item"]}`}>
+        <img src={`${product.thumbnail}`} alt="" />
+        <h2>{product.title}</h2>
+        <h3>{product.price}</h3>
       </div>
-    </div>
+      <div className={`${styles["product-actions"]} ${styles["flex-item"]}`}>
+        <h1>buy</h1>
+        <h1>add to fav</h1>
+      </div>
+    </section>
   );
 };
 

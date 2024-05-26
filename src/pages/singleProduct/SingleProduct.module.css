@@ -1,31 +1,16 @@
-.modal,
-.overlay {
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
+.product-container {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1em;
 }
-
-.overlay {
-  background: rgba(49, 49, 49, 0.8);
+.flex-item {
+  padding: 1em 2em;
 }
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #f1f1f1;
-  padding: 2em 3em;
-  border-radius: 3px;
-  max-width: 600px;
-  min-width: 300px;
+.product-info {
+  flex: 0 1 50%;
 }
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 7px;
+.product-actions {
+  flex: 1 1 auto;
 }
