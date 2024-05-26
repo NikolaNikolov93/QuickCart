@@ -1,0 +1,6 @@
+.home-page {
+  border: 1px solid black;
+  background-image: url("/images/home-page.jpg");
+  background-position: center;
+  height: 50vh;
+}
