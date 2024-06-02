@@ -1,11 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./CategoriesDropDown.module.css";
 import { Link } from "react-router-dom";
+
 const CategoriesDropDown = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    /**
+     * Fetch Data
+     *
+     */
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -26,6 +31,9 @@ const CategoriesDropDown = () => {
     fetchData();
   }, []);
 
+  /**
+   *
+   */
   const categoreisLIst = useMemo(() => {
     return categories.map((category: any, index) => (
       <li key={index}>

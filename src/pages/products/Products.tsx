@@ -1,29 +1,29 @@
 import styles from "./Products.module.css";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import sortBy from "../../helpers/sortBy";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
-  const [sortedList, setSortedList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { products } = useParams();
+  const [sortingCriteria, setSortingCriteria] = useState("");
+  const baseURL = `https://dummyjson.com/products/category/${products}`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://dummyjson.com/products/category/${products}`
-        );
+        const response = sortingCriteria
+          ? await fetch(baseURL + sortingCriteria)
+          : await fetch(baseURL);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const result = await response.json();
 
         setProductsList(result.products);
-        setSortedList(result.products);
       } catch (error) {
         console.log(error);
       } finally {
@@ -31,12 +31,18 @@ const Products = () => {
       }
     };
     fetchData();
-  }, [products]);
+  }, [products, sortingCriteria]);
 
-  const handleSort = (criteria) => {
-    const sorted = sortBy(criteria, [...productsList]);
-    setSortedList(sorted);
+  /**
+   * Handle sort
+   *
+   * @param criteria
+   */
+  const handleSort = (criteria: string) => {
+    let sort = sortBy(criteria);
+    setSortingCriteria(sort);
   };
+
   return (
     <>
       <div className={styles["sort-container"]}>
@@ -56,7 +62,7 @@ const Products = () => {
         </select>
       </div>
       <div className={styles["products-container"]}>
-        {sortedList.map((product: any) => (
+        {productsList.map((product: any) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

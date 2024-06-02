@@ -1,20 +1,18 @@
-interface Product {}
-
-export default function sortBy(criteria: string, products: Product[]) {
+export default function sortBy(criteria: string) {
+  let sorter = "";
   switch (criteria) {
     case "price-high-low":
-      products.sort((a, b) => b.price - a.price);
-
+      sorter = "?sortBy=price&order=desc";
       break;
     case "price-low-high":
-      products.sort((a, b) => a.price - b.price);
-
+      sorter = "?sortBy=price&order=asc";
       break;
     case "default":
-      return products;
+      return;
 
     default:
+      sorter = "";
       break;
   }
-  return products;
+  return sorter;
 }
