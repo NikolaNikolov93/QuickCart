@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import sortBy from "../../helpers/sortBy";
+import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
@@ -62,9 +63,13 @@ const Products = () => {
         </select>
       </div>
       <div className={styles["products-container"]}>
-        {productsList.map((product: any) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          productsList.map((product: any) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        )}
       </div>
     </>
   );
