@@ -8,6 +8,11 @@ const ProductCard = ({ product }: any) => {
 
   const { products } = useParams();
 
+  /**
+   * Return Product card Component
+   *
+   */
+
   const productCard = useMemo(() => {
     return (
       <div className={styles["card-container"]}>
