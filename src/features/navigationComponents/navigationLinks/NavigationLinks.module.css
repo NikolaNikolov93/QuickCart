@@ -1,17 +1,57 @@
 @import url("/src/styles/variables.css");
 
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+.dropdown-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+.categories:hover .dropdown-container {
+  visibility: visible;
+  animation: slideDownFadeIn 0.3s ease forwards;
+}
+.categories:not(:hover) .dropdown-container {
+  visibility: hidden;
+  animation: slideDownFadeOut 0.3s ease forwards;
+}
+
 .nav-links {
   display: flex;
   gap: 1em;
 }
+.nav-links > li:hover {
+  color: var(--active-links-color);
+}
+
 .nav-links > li,
 .nav-links > p {
   height: 67px;
   align-content: center;
 }
-.active {
-  color: var(--active-links-color);
-}
+
 .nav-links p:first-child::after {
   content: "\25be";
   margin-left: 0.2em;

@@ -1,9 +1,59 @@
+@import url(/src/styles/variables.css);
+
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 .profile {
   display: flex;
   gap: 1em;
   margin-left: auto;
+  align-items: center;
 }
+
 .profile a {
   color: var(--icons-color);
   font-size: 1.5em;
+}
+
+.profile-actions {
+  position: absolute;
+  right: 0;
+  width: 20em;
+  background-color: var(--nav-container-background-color);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.profile-icon:hover .profile-actions {
+  visibility: visible;
+  animation: slideDownFadeIn 0.3s ease forwards; /* Animation to show */
+}
+
+.profile-icon:not(:hover) .profile-actions {
+  visibility: hidden;
+  animation: slideDownFadeOut 0.3s ease forwards; /* Animation to hide */
 }

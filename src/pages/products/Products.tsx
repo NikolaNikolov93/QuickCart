@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import sortBy from "../../helpers/sortBy";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+import { Fa0 } from "react-icons/fa6";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);

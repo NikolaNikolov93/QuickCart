@@ -1,31 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./NavigationLinks.module.css";
 import CategoriesDropDown from "../categoriesDropDown/CategoriesDropDown";
-import { useState } from "react";
 
 const NavigationLinks = () => {
-  const [isActive, setIsActive] = useState(false);
-
   return (
     <ul className={styles["nav-links"]}>
-      <li
-        onMouseEnter={() => setIsActive(true)}
-        onMouseLeave={() => setIsActive(false)}
-        onClick={() => setIsActive(false)}
-      >
+      <li className={styles["categories"]}>
         <p>Categories</p>
-        {isActive && <CategoriesDropDown />}
+        <div id="dropdown-container" className={styles["dropdown-container"]}>
+          <CategoriesDropDown />
+        </div>
       </li>
-
       <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending ? styles["pending"] : isActive ? styles["active"] : ""
-          }
-          to="/new"
-        >
-          What's New
-        </NavLink>
+        <Link to="/new">What's New</Link>
       </li>
     </ul>
   );

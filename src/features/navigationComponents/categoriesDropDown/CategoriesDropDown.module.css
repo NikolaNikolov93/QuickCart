@@ -3,14 +3,18 @@
   position: absolute;
   top: 70px;
   left: 0;
+  right: 0;
   font-size: 0.9em;
   background-color: var(--nav-container-background-color);
   padding: 1em;
+  text-align: center;
+  display: flex;
 }
 .dropdown ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 1em;
+  justify-content: center;
 }
 .dropdown ul li {
   flex-basis: calc((100% - 3 * 0.5em) / 4);
