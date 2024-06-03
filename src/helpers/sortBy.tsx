@@ -1,18 +1,9 @@
 export default function sortBy(criteria: string) {
-  let sorter = "";
-  switch (criteria) {
-    case "price-high-low":
-      sorter = "?sortBy=price&order=desc";
-      break;
-    case "price-low-high":
-      sorter = "?sortBy=price&order=asc";
-      break;
-    case "default":
-      return;
+  if (criteria === "default") {
+    return;
+  } else {
+    let [sortby, order] = criteria.split("-");
 
-    default:
-      sorter = "";
-      break;
+    return `?sortBy=${sortby}&order=${order}`;
   }
-  return sorter;
 }
