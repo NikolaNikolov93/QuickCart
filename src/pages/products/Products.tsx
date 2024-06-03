@@ -59,8 +59,10 @@ const Products = () => {
           }}
         >
           <option value="default">Choose sorting option..</option>
-          <option value="price-high-low">Price (High-Low)</option>
-          <option value="price-low-high">Price (Low-High)</option>
+          <option value="price-asc">Price (Low-High)</option>
+          <option value="price-desc">Price (High-Low)</option>
+          <option value="title-asc">Name (A-Z)</option>
+          <option value="title-desc">Name (Z-A)</option>
         </select>
       </div>
       <div className={styles["products-container"]}>
