@@ -1,3 +1,6 @@
+/*
+Position the container in the middle of the screen
+*/
 .spinnerContainer {
   margin: 0 auto;
   display: flex;
@@ -5,6 +8,9 @@
   align-items: center;
   height: 50vh;
 }
+/*
+Turns the spinner into circle
+*/
 
 .spinner {
   border: 6px solid rgba(0, 0, 0, 0.1);
@@ -14,7 +20,9 @@
   height: 80px;
   animation: spin 1.5s linear infinite;
 }
-
+/*
+Adds Spinning animation
+*/
 @keyframes spin {
   to {
     transform: rotate(360deg);
