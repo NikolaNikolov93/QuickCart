@@ -2,30 +2,58 @@ import styles from "./ProfileActions.module.css";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlinePerson } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../state/store";
+import { removeUser } from "../../../state/user/userSlice";
 
 const ProfileActions = () => {
+  const user = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch();
   return (
     <>
       <ul className={styles["profile"]}>
+        {user != null ? (
+          <li>
+            <span>Hello, {user.email}</span>
+          </li>
+        ) : (
+          <></>
+        )}
+
         <li className={styles["profile-icon"]}>
-          <a href="">
+          <Link to="">
             <MdOutlinePerson />
-          </a>
+          </Link>
           <ul className={styles["profile-actions"]}>
-            <li>Login</li>
-            <li>Logout</li>
-            <li>Register</li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+
+            <li>
+              <Link
+                onClick={() => {
+                  dispatch(removeUser());
+                }}
+                to="#"
+              >
+                Logout
+              </Link>
+            </li>
           </ul>
         </li>
         <li>
-          <a href="">
+          <Link to="">
             <CiHeart />
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="">
+          <Link to="">
             <LiaShoppingBagSolid />
-          </a>
+          </Link>
         </li>
       </ul>
     </>
