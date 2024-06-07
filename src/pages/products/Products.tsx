@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import sortBy from "../../helpers/sortBy";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
-import { Fa0 } from "react-icons/fa6";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
@@ -48,7 +47,7 @@ const Products = () => {
   return (
     <>
       <div className={styles["sort-container"]}>
-        <label htmlFor="sort" className="sort-label">
+        <label htmlFor="sort" className={styles["sort-label"]}>
           Sort by:
         </label>
         <select

@@ -5,11 +5,32 @@
   flex-wrap: wrap;
   gap: 2em;
 }
+/* src/components/SortComponent/SortComponent.module.css */
 .sort-container {
+  display: flex;
+  align-items: center;
   margin-bottom: 1em;
+  background-color: var(--nav-container-background-color);
+  padding: 0.5em 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.sort-label {
+  margin-right: 1em;
+  font-weight: normal;
+  color: black;
+}
+
 .sort {
-  border: none;
-  margin-left: 1em;
-  font-size: 0.9em;
+  width: 200px;
+  padding: 0.5em;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  color: black;
+  transition: border-color 0.5s;
+}
+
+.sort:focus {
+  border-color: #ff7900;
+  outline: none;
 }
