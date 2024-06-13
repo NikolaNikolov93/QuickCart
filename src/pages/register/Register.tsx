@@ -5,7 +5,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useDispatch } from "react-redux";
 import { saveUser } from "../../state/user/userSlice";
-import { DiVim } from "react-icons/di";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   /**
    * Handles form submisson
    * Registers the user using Firebase authentication
@@ -27,8 +29,14 @@ const Register = () => {
           email: userCredential.user.email,
           id: userCredential.user.uid,
         };
-        dispatch(saveUser(user));
-        navigate("/");
+
+        setDoc(doc(db, "users", userCredential.user.uid), {
+          favourites: [],
+          email: userCredential.user.email,
+          id: userCredential.user.uid,
+        });
+
+        navigate("/login");
       })
       .catch((error) => {
         setErrorMessage(error.message);

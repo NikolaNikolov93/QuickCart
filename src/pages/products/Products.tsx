@@ -5,15 +5,19 @@ import { useParams } from "react-router-dom";
 import ProductCard from "../../components/productCard/ProductCard";
 import sortBy from "../../helpers/sortBy";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+import { useSelector } from "react-redux";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { products } = useParams();
   const [sortingCriteria, setSortingCriteria] = useState("");
+  const [favourites, setFavourites] = useState([]);
   const baseURL = `https://dummyjson.com/products/category/${products}`;
+  const favs = useSelector((state: RootState) => state.favourtes.favourites);
 
   useEffect(() => {
+    setFavourites(favs);
     const fetchData = async () => {
       try {
         const response = sortingCriteria
@@ -32,7 +36,7 @@ const Products = () => {
       }
     };
     fetchData();
-  }, [products, sortingCriteria]);
+  }, [products, sortingCriteria, favourites]);
 
   /**
    * Handle sort
@@ -69,7 +73,11 @@ const Products = () => {
           <LoadingSpinner />
         ) : (
           productsList.map((product: any) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              isLiked={favs.includes(product.id) ? "yes" : "no"}
+              product={product}
+            />
           ))
         )}
       </div>

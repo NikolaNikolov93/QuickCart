@@ -5,6 +5,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useDispatch } from "react-redux";
 import { saveUser } from "../../state/user/userSlice";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+import {
+  saveToFavouirtes,
+  setFavourites,
+} from "../../state/favourites/favouritesSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,18 +26,25 @@ const Login = () => {
    *
    * @param event
    */
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
     // Handle form submission
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = {
-          email: userCredential.user.email,
-          id: userCredential.user.uid,
-        };
+      .then(async (userCredential) => {
+        const docRef = doc(db, "users", userCredential.user.uid);
+        const docSnap = await getDoc(docRef);
 
-        dispatch(saveUser(user));
-        navigate("/");
+        if (docSnap.exists()) {
+          const user = docSnap.data();
+
+          dispatch(saveUser(user));
+          dispatch(setFavourites(docSnap.data().favourites));
+          navigate("/");
+        } else {
+          // docSnap.data() will be undefined in this case
+          console.log("No such document!");
+        }
       })
 
       .catch((error) => {
