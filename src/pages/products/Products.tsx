@@ -75,7 +75,7 @@ const Products = () => {
           productsList.map((product: any) => (
             <ProductCard
               key={product.id}
-              isLiked={favs.includes(product.id) ? "yes" : "no"}
+              isLiked={favs.includes(product.id) ? true : false}
               product={product}
             />
           ))
