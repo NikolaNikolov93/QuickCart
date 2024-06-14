@@ -1,7 +1,14 @@
-import { Link } from "react-router-dom";
+//Styles
 import styles from "./NavigationLinks.module.css";
+//React imports
+import { Link } from "react-router-dom";
+//Components imports
 import CategoriesDropDown from "../categoriesDropDown/CategoriesDropDown";
 
+/**
+ *
+ * @returns React functinal component
+ */
 const NavigationLinks = () => {
   return (
     <ul className={styles["nav-links"]}>

@@ -1,10 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
+//Styles
 import styles from "./CategoriesDropDown.module.css";
+//React imports
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ *
+ * @returns React functional component
+ */
 const CategoriesDropDown = () => {
+  //React States
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     /**
@@ -24,15 +30,13 @@ const CategoriesDropDown = () => {
         setCategories(result);
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();
   }, []);
 
   /**
-   *
+   * Returns Categoeries List with useMemo
    */
   const categoreisLIst = useMemo(() => {
     return categories.map((category: any, index) => (
