@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface UserState {
-  user: null;
+  user: {
+    email: string;
+    id: string;
+    favourites: [];
+  };
 }
 
 const initialState: UserState = {
-  user: null,
+  user: {
+    email: "",
+    id: "",
+    favourites: [],
+  },
 };
 
 const userSlice = createSlice({
@@ -16,7 +24,7 @@ const userSlice = createSlice({
       state.user = action.payload;
     },
     removeUser: (state) => {
-      state.user = null;
+      state.user = initialState;
     },
   },
 });
