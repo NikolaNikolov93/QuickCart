@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { average } from "firebase/firestore";
 
 interface FavouritesState {
   favourites: [];
@@ -19,9 +18,15 @@ const favouitesSlice = createSlice({
     saveToFavouirtes: (state, action) => {
       state.favourites.push(action.payload);
     },
+    removeFromFavourites: (state, action) => {
+      state.favourites = state.favourites.filter(
+        (item) => item !== action.payload // Assuming each favourite item has a unique `id`
+      );
+    },
   },
 });
 
-export const { saveToFavouirtes, setFavourites } = favouitesSlice.actions;
+export const { saveToFavouirtes, setFavourites, removeFromFavourites } =
+  favouitesSlice.actions;
 
 export default favouitesSlice.reducer;
