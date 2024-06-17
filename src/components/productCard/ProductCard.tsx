@@ -2,7 +2,7 @@
 import styles from "./ProductCard.module.css";
 //React imports
 import { Link, useParams } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
 //Redux imports
@@ -16,7 +16,7 @@ import {
   saveToFavouirtes,
 } from "../../state/favourites/favouritesSlice";
 
-const ProductCard = ({ product, isLiked }: any) => {
+const ProductCard = ({ product }: any) => {
   //Redux State selectors
   const favs = useSelector((state: RootState) => state.favourtes.favourites);
   const user = useSelector((state: RootState) => state.user.user);
@@ -24,9 +24,17 @@ const ProductCard = ({ product, isLiked }: any) => {
   const { products } = useParams();
   //React States
   const [selectedImage, setSelectedImage] = useState("");
-  const [like, setLike] = useState(isLiked);
+  const [like, setLike] = useState(false);
   //Redux dispatch
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (favs.length <= 0) {
+      setLike(false);
+    } else if (favs.includes(product.id)) {
+      setLike(true);
+    }
+  }, [favs]);
 
   /**
    *
@@ -99,17 +107,21 @@ const ProductCard = ({ product, isLiked }: any) => {
             ))}
           </div>
         </Link>
-        <button
-          onClick={() => {
-            handleLikeClick(product.id);
-          }}
-          className={styles["add-to-favourites-btn"]}
-        >
-          {like === true ? <IoMdHeart /> : <IoMdHeartEmpty />}
-        </button>
+        {user.id != "" ? (
+          <button
+            onClick={() => {
+              handleLikeClick(product.id);
+            }}
+            className={styles["add-to-favourites-btn"]}
+          >
+            {like === true ? <IoMdHeart /> : <IoMdHeartEmpty />}
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     );
-  }, [selectedImage, favs]);
+  }, [selectedImage, favs, like, user]);
 
   return productCard;
 };

@@ -15,6 +15,9 @@ const favouitesSlice = createSlice({
     setFavourites: (state, action) => {
       state.favourites = action.payload;
     },
+    resetFavourites: (state) => {
+      state.favourites = initialState.favourites;
+    },
     saveToFavouirtes: (state, action) => {
       state.favourites.push(action.payload);
     },
@@ -26,7 +29,11 @@ const favouitesSlice = createSlice({
   },
 });
 
-export const { saveToFavouirtes, setFavourites, removeFromFavourites } =
-  favouitesSlice.actions;
+export const {
+  saveToFavouirtes,
+  setFavourites,
+  removeFromFavourites,
+  resetFavourites,
+} = favouitesSlice.actions;
 
 export default favouitesSlice.reducer;

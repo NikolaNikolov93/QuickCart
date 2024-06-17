@@ -5,11 +5,12 @@ import { LiaShoppingBagSolid } from "react-icons/lia";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlinePerson } from "react-icons/md";
 //React imports
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //Redux imports
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 import { removeUser } from "../../../state/user/userSlice";
+import { resetFavourites } from "../../../state/favourites/favouritesSlice";
 
 /**
  *
@@ -17,7 +18,13 @@ import { removeUser } from "../../../state/user/userSlice";
  */
 const ProfileActions = () => {
   const user = useSelector((state: RootState) => state.user.user);
+
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(removeUser());
+    dispatch(resetFavourites());
+  };
 
   return (
     <>
@@ -45,7 +52,7 @@ const ProfileActions = () => {
             <li>
               <Link
                 onClick={() => {
-                  dispatch(removeUser());
+                  handleLogout();
                 }}
                 to="#"
               >
