@@ -29,11 +29,11 @@
   visibility: hidden;
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
-.categories:hover .dropdown-container {
+.visible {
   visibility: visible;
   animation: slideDownFadeIn 0.3s ease forwards;
 }
-.categories:not(:hover) .dropdown-container {
+.hidden {
   visibility: hidden;
   animation: slideDownFadeOut 0.3s ease forwards;
 }

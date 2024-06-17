@@ -3,12 +3,17 @@ import styles from "./CategoriesDropDown.module.css";
 //React imports
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-
+//Categories props interface
+interface CategoriesDropDownProps {
+  onCategoryClick: () => void;
+}
 /**
  *
  * @returns React functional component
  */
-const CategoriesDropDown = () => {
+const CategoriesDropDown: React.FC<CategoriesDropDownProps> = ({
+  onCategoryClick,
+}) => {
   //React States
   const [categories, setCategories] = useState([]);
 
@@ -40,7 +45,7 @@ const CategoriesDropDown = () => {
    */
   const categoreisLIst = useMemo(() => {
     return categories.map((category: any, index) => (
-      <li key={index}>
+      <li key={index} onClick={onCategoryClick}>
         <Link to={`/categories/${category.slug}`}>{category.name}</Link>
       </li>
     ));
