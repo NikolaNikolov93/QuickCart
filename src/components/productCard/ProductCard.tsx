@@ -18,7 +18,9 @@ import {
 
 const ProductCard = ({ product }: any) => {
   //Redux State selectors
-  const favs = useSelector((state: RootState) => state.favourtes.favourites);
+  const favs: number[] = useSelector(
+    (state: RootState) => state.favourtes.favourites
+  );
   const user = useSelector((state: RootState) => state.user.user);
   //Select URL params
   const { products } = useParams();
@@ -42,7 +44,7 @@ const ProductCard = ({ product }: any) => {
    * @param id number --> item id
    *
    */
-  const handleLikeClick = async (id) => {
+  const handleLikeClick = async (id: number) => {
     //Reference for the current user document in the Firestore
     const userRef = doc(db, "users", user.id);
     //Chekcks if the item id is included in the user's favoutires and removes it if it does
