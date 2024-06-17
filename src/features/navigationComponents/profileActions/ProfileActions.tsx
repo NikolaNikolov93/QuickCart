@@ -5,7 +5,7 @@ import { LiaShoppingBagSolid } from "react-icons/lia";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlinePerson } from "react-icons/md";
 //React imports
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 //Redux imports
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
@@ -42,23 +42,33 @@ const ProfileActions = () => {
             <MdOutlinePerson />
           </Link>
           <ul className={styles["profile-actions"]}>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-
-            <li>
-              <Link
-                onClick={() => {
-                  handleLogout();
-                }}
-                to="#"
-              >
-                Logout
-              </Link>
-            </li>
+            {user.id ? (
+              <>
+                {" "}
+                <li>
+                  <Link to="/">Profile</Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={() => {
+                      handleLogout();
+                    }}
+                    to="#"
+                  >
+                    Logout
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/register">Register</Link>
+                </li>
+              </>
+            )}
           </ul>
         </li>
         <li>
