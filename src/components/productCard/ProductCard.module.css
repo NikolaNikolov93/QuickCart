@@ -62,4 +62,12 @@
   border: 1px solid lightgray;
   padding: 0.3em 0.3em 0 0.3em;
   border-radius: 0.3em;
+  color: var(--active-links-color);
+  transition: transform 0.2s ease;
+}
+.add-to-favourites-btn:hover {
+  cursor: pointer;
+}
+.add-to-favourites-btn:active {
+  transform: scale(0.8);
 }

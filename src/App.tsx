@@ -8,6 +8,7 @@ import Products from "./pages/products/Products";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import Footer from "./features/footer/Footer";
 function App() {
   return (
     <div className="site">
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
