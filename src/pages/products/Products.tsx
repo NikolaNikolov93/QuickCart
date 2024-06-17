@@ -1,16 +1,26 @@
+//Styles
 import styles from "./Products.module.css";
 
+//React imports
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductCard from "../../components/productCard/ProductCard";
+
+//Helper function
 import sortBy from "../../helpers/sortBy";
+
+//Components imports
+import ProductCard from "../../components/productCard/ProductCard";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+//Product interface import
+import Product from "../../components/productCard/productInterface";
 
 const Products = () => {
+  //React States
   const [productsList, setProductsList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { products } = useParams();
   const [sortingCriteria, setSortingCriteria] = useState("");
+  //URL params
+  const { products } = useParams();
   const baseURL = `https://dummyjson.com/products/category/${products}`;
 
   useEffect(() => {
@@ -68,7 +78,7 @@ const Products = () => {
         {loading ? (
           <LoadingSpinner />
         ) : (
-          productsList.map((product: any) => (
+          productsList.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))
         )}
