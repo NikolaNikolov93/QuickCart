@@ -8,7 +8,7 @@
  */
 export default function sortBy(criteria: string) {
   if (criteria === "default") {
-    return;
+    return "";
   } else {
     let [sortby, order] = criteria.split("-");
 
