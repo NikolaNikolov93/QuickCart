@@ -1,17 +1,22 @@
-import { useState } from "react";
+//Styles
 import styles from "./Login.module.css";
+//React imports
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+//Firebase imports
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import { auth } from "../../firebase/firebase";
+import { db } from "../../firebase/firebase";
+//Redux imports
 import { useDispatch } from "react-redux";
 import { saveUser } from "../../state/user/userSlice";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
-import {
-  saveToFavouirtes,
-  setFavourites,
-} from "../../state/favourites/favouritesSlice";
+import { setFavourites } from "../../state/favourites/favouritesSlice";
 
+/**
+ *
+ * @returns React functional component
+ */
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
