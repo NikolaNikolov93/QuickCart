@@ -1,12 +1,24 @@
-import { useEffect, useState } from "react";
+//Styles
 import styles from "./SingleProduct.module.css";
+//React imports
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+//Prodcut interface
+import Product from "../../components/productCard/productInterface";
 
+/**
+ *
+ * @returns React functional component
+ */
 const SingleProduct = () => {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
+  /**
+   *
+   * Fetches single product and displays single product card
+   */
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,6 +37,11 @@ const SingleProduct = () => {
     };
     fetchData();
   }, []);
+
+  //If product is null returns UI
+  if (!product) {
+    return <div>Product not found!</div>;
+  }
 
   return (
     <section className={styles["product-container"]}>

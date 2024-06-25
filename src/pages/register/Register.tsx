@@ -1,18 +1,19 @@
-import { useState } from "react";
+//Styles
 import styles from "./Register.module.css";
+//React imports
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+//Firebase imports
 import { auth } from "../../firebase/firebase";
-import { useDispatch } from "react-redux";
-import { saveUser } from "../../state/user/userSlice";
-import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   /**
@@ -21,15 +22,10 @@ const Register = () => {
    *
    * @param event
    */
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = {
-          email: userCredential.user.email,
-          id: userCredential.user.uid,
-        };
-
         setDoc(doc(db, "users", userCredential.user.uid), {
           favourites: [],
           email: userCredential.user.email,
