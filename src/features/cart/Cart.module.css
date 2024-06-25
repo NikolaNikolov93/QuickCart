@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 300px;
+  max-height: 70vh; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
