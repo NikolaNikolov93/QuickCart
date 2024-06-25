@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface FavouritesState {
-  favourites: [];
+  favourites: number[];
 }
 
 const initialState: FavouritesState = {
