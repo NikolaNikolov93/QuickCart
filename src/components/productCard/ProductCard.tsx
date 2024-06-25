@@ -15,8 +15,15 @@ import {
   removeFromFavourites,
   saveToFavouirtes,
 } from "../../state/favourites/favouritesSlice";
+import { addToShoopingCart } from "../../state/shoppingCart/shoppingCartSlice";
+import Product from "./productInterface";
 
-const ProductCard = ({ product }: any) => {
+//ProductCardProps
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard = ({ product }: ProductCardProps) => {
   //Redux State selectors
   const favs: number[] = useSelector(
     (state: RootState) => state.favourtes.favourites
@@ -70,6 +77,13 @@ const ProductCard = ({ product }: any) => {
       dispatch(saveToFavouirtes(id));
     }
   };
+  /**
+   * Handles adding the item to the cart
+   *
+   */
+  const handleAddToCart = () => {
+    dispatch(addToShoopingCart(product));
+  };
 
   /**
    * Return Product card Component by using useMemmo
@@ -110,14 +124,24 @@ const ProductCard = ({ product }: any) => {
           </div>
         </Link>
         {user.id != "" ? (
-          <button
-            onClick={() => {
-              handleLikeClick(product.id);
-            }}
-            className={styles["add-to-favourites-btn"]}
-          >
-            {like === true ? <IoMdHeart /> : <IoMdHeartEmpty />}
-          </button>
+          <>
+            <button
+              onClick={() => {
+                handleLikeClick(product.id);
+              }}
+              className={styles["add-to-favourites-btn"]}
+            >
+              {like === true ? <IoMdHeart /> : <IoMdHeartEmpty />}
+            </button>
+            <button
+              className={styles["add-to-cart-button"]}
+              onClick={() => {
+                handleAddToCart();
+              }}
+            >
+              Add to cart
+            </button>
+          </>
         ) : (
           <></>
         )}
