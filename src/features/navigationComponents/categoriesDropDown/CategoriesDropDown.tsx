@@ -1,9 +1,12 @@
 //Styles
 import styles from "./CategoriesDropDown.module.css";
 //React imports
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
+//CustomHooks
+import useFetchCategories from "../../../hooks/useFetchCategories";
 //Categories props interface
+
 interface CategoriesDropDownProps {
   onCategoryClick: () => void;
 }
@@ -14,31 +17,10 @@ interface CategoriesDropDownProps {
 const CategoriesDropDown: React.FC<CategoriesDropDownProps> = ({
   onCategoryClick,
 }) => {
-  //React States
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    /**
-     * Fetch Data
-     *
-     */
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://dummyjson.com/products/categories"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-
-        setCategories(result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  /**
+   * React Custom Hook for fetching categories
+   */
+  const categories = useFetchCategories();
 
   /**
    * Returns Categoeries List with useMemo
