@@ -1,54 +1,31 @@
 //Styles
 import styles from "./Products.module.css";
 
-//React imports
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
 //Helper function
 import sortBy from "../../helpers/sortBy";
 
 //Components imports
 import ProductCard from "../../components/productCard/ProductCard";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
+
 //Product interface import
 import Product from "../../components/productCard/productInterface";
 
+//Custom hooks
+import useFetchProducts from "../../hooks/useFetchProducts";
+
 const Products = () => {
-  //React States
-  const [productsList, setProductsList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [sortingCriteria, setSortingCriteria] = useState("");
-  //URL params
-  const { products } = useParams();
-  const baseURL = `https://dummyjson.com/products/category/${products}`;
+  /**
+   * Fetch products with custom hook
+   */
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = sortingCriteria
-          ? await fetch(baseURL + sortingCriteria)
-          : await fetch(baseURL);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-
-        setProductsList(result.products);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [products, sortingCriteria]);
-
+  const { productsList, loading, setSortingCriteria } = useFetchProducts();
   /**
    * Handle sort
    *
    * @param criteria
    */
+
   const handleSort = (criteria: string) => {
     let sort = sortBy(criteria);
     setSortingCriteria(sort);
