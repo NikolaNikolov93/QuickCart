@@ -13,7 +13,7 @@ import { removeUser } from "../../../state/user/userSlice";
 import { resetFavourites } from "../../../state/favourites/favouritesSlice";
 import { resetShoppingCart } from "../../../state/shoppingCart/shoppingCartSlice";
 //React imports
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 //Component imports
 import Cart from "../../cart/Cart";
 
@@ -47,6 +47,26 @@ const ProfileActions = () => {
    * Returns JSX components that is dependant on the user and shopping cart items
    *
    */
+  function handleClickOutside(e) {
+    // if (e.target.className.includes("cart")) {
+    //   setIsCartVisible(true);
+    // } else {
+    //   setIsCartVisible(false);
+    // }
+    console.log(e.target);
+  }
+  useEffect(() => {
+    if (isCartVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isCartVisible]);
+
   const profileActions = useMemo(() => {
     return (
       <>

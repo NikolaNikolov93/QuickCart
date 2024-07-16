@@ -3,6 +3,29 @@
   flex-direction: column;
   gap: 1em;
   max-width: 300px;
-  max-height: 70vh; /* Set a maximum height */
+  max-height: 100vh; /* Set a maximum height */
+  background-color: var(--nav-container-background-color);
+}
+.container:hover {
   overflow-y: auto; /* Enable vertical scrolling */
+}
+::-webkit-scrollbar {
+  width: 12px; /* width of the vertical scrollbar */
+  height: 12px; /* height of the horizontal scrollbar */
+}
+
+/* The draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: var(--active-links-color);
+  border-radius: 6px;
+}
+
+/* The background of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* When hovering over the draggable part */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
