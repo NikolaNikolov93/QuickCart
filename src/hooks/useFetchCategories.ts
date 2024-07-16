@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 
+/**
+ *
+ * @returns Fetches the categoreis list
+ */
+
 export default function useFetchCategories() {
+  //Set categoreis state
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     /**
      * Fetch Data
