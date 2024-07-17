@@ -13,6 +13,8 @@ import Product from "../../components/productCard/productInterface";
 
 //Custom hooks
 import useFetchProducts from "../../hooks/useFetchProducts";
+import { useEffect, useState } from "react";
+import Pagination from "../../components/pagination/Pagination";
 
 const Products = () => {
   /**
@@ -20,6 +22,19 @@ const Products = () => {
    */
 
   const { productsList, loading, setSortingCriteria } = useFetchProducts();
+  /**
+   * Pagination
+   */
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(10);
+
+  const lastProductIndex = currentPage * productsPerPage;
+  const firstProductIndex = lastProductIndex - productsPerPage;
+  const currentProductsOnPage = productsList.slice(
+    firstProductIndex,
+    lastProductIndex
+  );
+
   /**
    * Handle sort
    *
@@ -55,11 +70,17 @@ const Products = () => {
         {loading ? (
           <LoadingSpinner />
         ) : (
-          productsList.map((product: Product) => (
+          currentProductsOnPage.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))
         )}
       </div>
+      <Pagination
+        totalProducts={productsList.length}
+        productsPerPage={productsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </>
   );
 };

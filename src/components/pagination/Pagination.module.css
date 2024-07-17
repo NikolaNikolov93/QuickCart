@@ -1,0 +1,12 @@
+.pagination-container {
+  display: flex;
+  gap: 0.5em;
+  margin-top: 0.8em;
+  justify-content: center;
+}
+.page-button {
+  padding: 0.5em;
+}
+.active {
+  background-color: var(--active-links-color);
+}
