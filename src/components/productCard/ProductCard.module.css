@@ -1,6 +1,112 @@
 .card-container {
   position: relative;
   padding: 0 1em 3em 1em;
+  margin-bottom: 2em;
+  flex-basis: calc((100% - 4 * 2em) / 5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 0.5em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card {
+  text-align: center;
+  color: #1d3124;
+}
+
+.card-container:hover {
+  background-color: #f9f9f9;
+  transform: translateY(-0.5em);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-container:hover .hover-info {
+  opacity: 1;
+  bottom: 1em;
+  pointer-events: all;
+}
+
+.image-container {
+  max-height: 300px;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 0.5em;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5em;
+}
+
+.product-card p {
+  text-align: start;
+  margin: 0.5em 0;
+}
+
+.hover-info {
+  display: flex;
+  position: absolute;
+  gap: 0.5em;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  pointer-events: none;
+}
+
+.hover-info img {
+  border: 1px solid rgb(195, 195, 195);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 50px;
+  width: 50px;
+  border-radius: 0.25em;
+  transition: background-color 0.3s ease;
+}
+
+.hover-info img:hover {
+  background-color: #fff;
+}
+
+.add-to-favourites-btn,
+.add-to-cart-button {
+  font-size: 1em;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid lightgray;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  color: var(--active-links-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-to-favourites-btn {
+  top: 1em;
+  right: 1em;
+}
+
+.add-to-cart-button {
+  top: 1em;
+  left: 1em;
+}
+
+.add-to-favourites-btn:hover,
+.add-to-cart-button:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-favourites-btn:active,
+.add-to-cart-button:active {
+  transform: scale(0.95);
+}
+
+/* .card-container {
+  position: relative;
+  padding: 0 1em 3em 1em;
   flex-basis: calc((100% - 4 * 2em) / 5);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
@@ -91,4 +197,4 @@
 }
 .add-to-cart-button:active {
   transform: scale(0.9);
-}
+} */

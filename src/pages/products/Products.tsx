@@ -45,6 +45,10 @@ const Products = () => {
     let sort = sortBy(criteria);
     setSortingCriteria(sort);
   };
+  useEffect(() => {
+    // Reset currentPage to 1 whenever productsList changes
+    setCurrentPage(1);
+  }, [productsList]);
 
   return (
     <>
